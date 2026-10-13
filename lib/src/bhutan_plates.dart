@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
 
@@ -152,6 +154,20 @@ class _Part {
 /// orange and yellow. Not implemented: older numeric-only series.
 /// The article names no Israel-specific value.
 abstract final class BhutanPlates {
+  static PlateSlot _field(
+    PlateAlphabet alphabet,
+    int count,
+    double left,
+    double pitch,
+    double top,
+    double height,
+  ) => PlateSlot(
+    alphabet: alphabet,
+    box: PlateBox(left, top, count * pitch, height),
+    length: count,
+    spacing: max(0, pitch - 0.6 * 0.72 * height),
+  );
+
   /// `BP-1-A1234`: white on red.
   static final PlateSpec private = _civil(
     'bt.private',
@@ -238,20 +254,9 @@ abstract final class BhutanPlates {
     final List<PlateTextGroup> groups = <PlateTextGroup>[];
     int cell = 0;
     for (final _Part p in parts) {
-      groups.add(
-        PlateTextGroup(<int>[
-          for (int i = 0; i < p.count; i++) slots.length + i,
-        ], key: p.key),
-      );
-      slots.addAll(
-        plateRegister(
-          alphabet: p.alphabet,
-          count: p.count,
-          left: row.left + cell * pitch,
-          top: row.top,
-          width: pitch,
-          height: row.box,
-        ),
+      groups.add(PlateTextGroup(<int>[slots.length], key: p.key));
+      slots.add(
+        _field(p.alphabet, p.count, row.left + cell * pitch, pitch, row.top, row.box),
       );
       cell += p.count;
       if (p.dash) {
@@ -289,21 +294,14 @@ abstract final class BhutanPlates {
       panel: const PlatePanel(box: PlateBox(0, 0, 0, 0)),
       noPanel: true,
       slots: <PlateSlot>[
-        ...plateRegister(
-          alphabet: BhutanAlphabets.digits,
-          count: 2,
-          left: row.left,
-          top: row.top,
-          width: pitch,
-          height: row.box,
-        ),
-        ...plateRegister(
-          alphabet: BhutanAlphabets.digits,
-          count: 2,
-          left: row.left + 4 * pitch,
-          top: row.top,
-          width: pitch,
-          height: row.box,
+        _field(BhutanAlphabets.digits, 2, row.left, pitch, row.top, row.box),
+        _field(
+          BhutanAlphabets.digits,
+          2,
+          row.left + 4 * pitch,
+          pitch,
+          row.top,
+          row.box,
         ),
       ],
       labels: <PlateLabel>[
@@ -324,8 +322,8 @@ abstract final class BhutanPlates {
         ),
       ],
       textGroups: const <PlateTextGroup>[
-        PlateTextGroup(<int>[0, 1], key: 'country'),
-        PlateTextGroup(<int>[2, 3], key: 'serial'),
+        PlateTextGroup(<int>[0], key: 'country'),
+        PlateTextGroup(<int>[1], key: 'serial'),
       ],
     );
   }
@@ -355,26 +353,26 @@ abstract final class BhutanPlates {
         ),
       ]),
       slots: <PlateSlot>[
-        ...plateRegister(
-          alphabet: BhutanAlphabets.letters,
-          count: 3,
-          left: _Layout.guardLettersLeft,
-          top: top,
-          width: _Layout.guardLettersPitch,
-          height: _Layout.guardBox,
+        _field(
+          BhutanAlphabets.letters,
+          3,
+          _Layout.guardLettersLeft,
+          _Layout.guardLettersPitch,
+          top,
+          _Layout.guardBox,
         ),
-        ...plateRegister(
-          alphabet: BhutanAlphabets.digits,
-          count: 4,
-          left: _Layout.guardDigitsLeft,
-          top: top,
-          width: _Layout.guardDigitsPitch,
-          height: _Layout.guardBox,
+        _field(
+          BhutanAlphabets.digits,
+          4,
+          _Layout.guardDigitsLeft,
+          _Layout.guardDigitsPitch,
+          top,
+          _Layout.guardBox,
         ),
       ],
       textGroups: const <PlateTextGroup>[
-        PlateTextGroup(<int>[0, 1, 2], key: 'type'),
-        PlateTextGroup(<int>[3, 4, 5, 6], key: 'number'),
+        PlateTextGroup(<int>[0], key: 'type'),
+        PlateTextGroup(<int>[1], key: 'number'),
       ],
     );
   }

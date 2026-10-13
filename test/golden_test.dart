@@ -27,19 +27,19 @@ void main() {
   /// category id -> (spec, theme, space-separated sample value)
   final Map<String, (PlateSpec, PlateTheme, String)>
   cases = <String, (PlateSpec, PlateTheme, String)>{
-    'private': (BhutanPlates.private, BhutanThemes.private, 'B P 2 A 7 6 6 2'),
+    'private': (BhutanPlates.private, BhutanThemes.private, 'BP 2 A 7662'),
     'government': (
       BhutanPlates.government,
       BhutanThemes.government,
-      'B G 1 A 1 8 9 3',
+      'BG 1 A 1893',
     ),
-    'taxi': (BhutanPlates.taxi, BhutanThemes.taxi, 'B T 2 A 0 9 4 0'),
-    'police': (BhutanPlates.police, BhutanThemes.police, 'R B P 2 3 0 0'),
-    'diplomatic': (BhutanPlates.diplomatic, BhutanThemes.diplomatic, '0 5 0 8'),
+    'taxi': (BhutanPlates.taxi, BhutanThemes.taxi, 'BT 2 A 0940'),
+    'police': (BhutanPlates.police, BhutanThemes.police, 'RBP 2300'),
+    'diplomatic': (BhutanPlates.diplomatic, BhutanThemes.diplomatic, '05 08'),
     'royal_guard': (
       BhutanPlates.royalGuard,
       BhutanThemes.royalGuard,
-      'R B G 8 0 4 7',
+      'RBG 8047',
     ),
   };
 
