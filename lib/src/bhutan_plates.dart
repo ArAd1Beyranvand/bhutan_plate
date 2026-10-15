@@ -5,6 +5,7 @@ import 'package:plate_core/plate_core.dart';
 
 import 'bhutan_colors.dart';
 import 'bhutan_country.dart';
+import 'bhutan_regions.dart';
 
 /// Where the ink sits, in plate units.
 ///
@@ -280,6 +281,9 @@ abstract final class BhutanPlates {
       slots: slots,
       labels: labels,
       textGroups: groups,
+      resolveRegion: parts.any((_Part p) => p.key == 'area')
+          ? BhutanRegions.captionOf
+          : null,
     );
   }
 

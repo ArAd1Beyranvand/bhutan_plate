@@ -53,7 +53,6 @@ PlateCanvas(
 - [`iran_plate`](https://pub.dev/packages/iran-plate) - Iran's licence plates.
 - [`iranshahr_plate`](https://pub.dev/packages/iranshahr-plate) - Iranshahr region's licence plates.
 - [`italy_plate`](https://pub.dev/packages/italy-plate) - Italy's licence plates.
-- [`kazakhstan_plate`](https://pub.dev/packages/kazakhstan-plate) - Kazakhstan's licence plates.
 - [`kyrgyzstan_plate`](https://pub.dev/packages/kyrgyzstan-plate) - Kyrgyzstan's licence plates.
 - [`laos_plate`](https://pub.dev/packages/laos-plate) - Laos's licence plates.
 - [`lebanon_plate`](https://pub.dev/packages/lebanon-plate) - Lebanon's licence plates.
@@ -79,9 +78,7 @@ PlateCanvas(
 - [`thailand_plate`](https://pub.dev/packages/thailand-plate) - Thailand's licence plates.
 - [`timor_leste_plate`](https://pub.dev/packages/timor-leste-plate) - Timor-Leste's licence plates.
 - [`tunisia_plate`](https://pub.dev/packages/tunisia-plate) - Tunisia's licence plates.
-- [`turkmenistan_plate`](https://pub.dev/packages/turkmenistan-plate) - Turkmenistan's licence plates.
 - [`uruguay_plate`](https://pub.dev/packages/uruguay-plate) - Uruguay's licence plates.
-- [`uzbekistan_plate`](https://pub.dev/packages/uzbekistan-plate) - Uzbekistan's licence plates.
 - [`vanuatu_plate`](https://pub.dev/packages/vanuatu-plate) - Vanuatu's licence plates.
 - [`vatican_city_plate`](https://pub.dev/packages/vatican-city-plate) - Vatican City's licence plates.
 - [`venezuela_plate`](https://pub.dev/packages/venezuela-plate) - Venezuela's licence plates.
