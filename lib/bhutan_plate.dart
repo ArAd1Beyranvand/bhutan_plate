@@ -1,6 +1,5 @@
-/// Bhutan's licence plates for the `plate_core` library.
-///
-/// private, government, taxi, police, diplomatic and Royal Guard plates, one theme each, and an advisory validator.
+/// Bhutan's private, government, taxi, police, diplomatic and Royal Guard
+/// plates for `plate_core`, with advisory validators.
 library;
 
 export 'src/bhutan_colors.dart';

@@ -153,7 +153,6 @@ class _Part {
 /// photographs and are unverified. The Royal Guard plate is the 1970s one the
 /// article pictures; the article's prose describes the current one as black,
 /// orange and yellow. Not implemented: older numeric-only series.
-/// The article names no Israel-specific value.
 abstract final class BhutanPlates {
   static PlateSlot _field(
     PlateAlphabet alphabet,
@@ -257,7 +256,14 @@ abstract final class BhutanPlates {
     for (final _Part p in parts) {
       groups.add(PlateTextGroup(<int>[slots.length], key: p.key));
       slots.add(
-        _field(p.alphabet, p.count, row.left + cell * pitch, pitch, row.top, row.box),
+        _field(
+          p.alphabet,
+          p.count,
+          row.left + cell * pitch,
+          pitch,
+          row.top,
+          row.box,
+        ),
       );
       cell += p.count;
       if (p.dash) {

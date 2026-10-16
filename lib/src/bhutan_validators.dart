@@ -25,14 +25,13 @@ class BhutanValidator extends GatedPlateValidator {
     if (!types.contains(type)) {
       return PlateValidation.invalid('The type is ${types.join(' or ')}.');
     }
-    final String area = entry.group('area');
-    if (entry.spec.effectiveTextGroups.any((g) => g.key == 'area') &&
-        !RegExp(r'^[1-5]$').hasMatch(area)) {
+    final keys = {for (final g in entry.spec.effectiveTextGroups) g.key};
+    if (keys.contains('area') &&
+        !RegExp(r'^[1-5]$').hasMatch(entry.group('area'))) {
       return PlateValidation.invalid('The area code is 1 to 5.');
     }
-    final String series = entry.group('series');
-    if (entry.spec.effectiveTextGroups.any((g) => g.key == 'series') &&
-        !RegExp(r'^[A-Z]$').hasMatch(series)) {
+    if (keys.contains('series') &&
+        !RegExp(r'^[A-Z]$').hasMatch(entry.group('series'))) {
       return PlateValidation.invalid('The series is one letter.');
     }
     if (!isDigitsOfLength(entry.group('number'), 4)) {
