@@ -168,6 +168,17 @@ abstract final class BhutanPlates {
     spacing: max(0, pitch - 0.6 * 0.72 * height),
   );
 
+  static PlateLabel _caption(_Row row, String text) => PlateLabel(
+    text: text,
+    box: PlateBox(
+      row.captionCx - 150,
+      row.captionCy - row.captionBox / 2,
+      300,
+      row.captionBox,
+    ),
+    glyphHeight: row.captionGlyph,
+  );
+
   /// `BP-1-A1234`: white on red.
   static final PlateSpec private = _civil(
     'bt.private',
@@ -239,18 +250,7 @@ abstract final class BhutanPlates {
     );
     final double pitch = (row.right - row.left) / cells;
     final List<PlateSlot> slots = <PlateSlot>[];
-    final List<PlateLabel> labels = <PlateLabel>[
-      PlateLabel(
-        text: caption,
-        box: PlateBox(
-          row.captionCx - 150,
-          row.captionCy - row.captionBox / 2,
-          300,
-          row.captionBox,
-        ),
-        glyphHeight: row.captionGlyph,
-      ),
-    ];
+    final List<PlateLabel> labels = <PlateLabel>[_caption(row, caption)];
     final List<PlateTextGroup> groups = <PlateTextGroup>[];
     int cell = 0;
     for (final _Part p in parts) {
@@ -315,16 +315,7 @@ abstract final class BhutanPlates {
         ),
       ],
       labels: <PlateLabel>[
-        PlateLabel(
-          text: 'ཚབ་',
-          box: PlateBox(
-            row.captionCx - 150,
-            row.captionCy - row.captionBox / 2,
-            300,
-            row.captionBox,
-          ),
-          glyphHeight: row.captionGlyph,
-        ),
+        _caption(row, 'ཚབ་'),
         PlateLabel(
           text: 'CD',
           box: PlateBox(row.left + 2 * pitch, row.top, 2 * pitch, row.box),

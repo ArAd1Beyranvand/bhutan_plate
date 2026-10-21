@@ -16,6 +16,9 @@ class BhutanValidator extends GatedPlateValidator {
 
   final List<String> types;
 
+  static final RegExp _area = RegExp(r'^[1-5]$');
+  static final RegExp _series = RegExp(r'^[A-Z]$');
+
   @override
   String get gateGroup => 'type';
 
@@ -26,12 +29,10 @@ class BhutanValidator extends GatedPlateValidator {
       return PlateValidation.invalid('The type is ${types.join(' or ')}.');
     }
     final keys = {for (final g in entry.spec.effectiveTextGroups) g.key};
-    if (keys.contains('area') &&
-        !RegExp(r'^[1-5]$').hasMatch(entry.group('area'))) {
+    if (keys.contains('area') && !_area.hasMatch(entry.group('area'))) {
       return PlateValidation.invalid('The area code is 1 to 5.');
     }
-    if (keys.contains('series') &&
-        !RegExp(r'^[A-Z]$').hasMatch(entry.group('series'))) {
+    if (keys.contains('series') && !_series.hasMatch(entry.group('series'))) {
       return PlateValidation.invalid('The series is one letter.');
     }
     if (!isDigitsOfLength(entry.group('number'), 4)) {
@@ -46,16 +47,17 @@ class BhutanValidator extends GatedPlateValidator {
 class BhutanDiplomaticValidator extends GatedPlateValidator {
   const BhutanDiplomaticValidator();
 
+  static final RegExp _digits = RegExp(r'^[0-9]{1,2}$');
+
   @override
   String get gateGroup => 'country';
 
   @override
   PlateValidation judge(PlateEntry entry) {
-    final RegExp digits = RegExp(r'^[0-9]{1,2}$');
-    if (!digits.hasMatch(entry.group('country'))) {
+    if (!_digits.hasMatch(entry.group('country'))) {
       return PlateValidation.invalid('The country number is 1 or 2 digits.');
     }
-    if (!digits.hasMatch(entry.group('serial'))) {
+    if (!_digits.hasMatch(entry.group('serial'))) {
       return PlateValidation.invalid('The serial is 1 or 2 digits.');
     }
     return const PlateValidation.valid();
