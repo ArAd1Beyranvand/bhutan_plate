@@ -17,9 +17,7 @@ void main() {
 
   test('only the plates with an area digit resolve it', () {
     for (final PlateSpec spec in BhutanPlates.all) {
-      final bool hasArea = spec.effectiveTextGroups.any(
-        (PlateTextGroup g) => g.key == 'area',
-      );
+      final bool hasArea = spec.effectiveTextGroups.any((PlateTextGroup g) => g.key == 'area');
       expect(spec.resolveRegion != null, hasArea, reason: spec.id);
     }
   });

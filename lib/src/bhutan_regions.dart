@@ -19,6 +19,5 @@ abstract final class BhutanRegions {
   static String? lookup(String digit) => _areas[digit];
 
   /// A [PlateLabelResolver] for [PlateSpec.resolveRegion].
-  static String? captionOf(String Function(String key) group) =>
-      lookup(group('area'));
+  static String? captionOf(String Function(String key) group) => lookup(group('area'));
 }
