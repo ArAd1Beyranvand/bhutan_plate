@@ -1,7 +1,7 @@
 name: bhutan_plate
 description: "Bhutan's licence plates for the plate_core library — private, government, taxi, police, diplomatic and Royal Guard plates, one theme each, and an advisory validator."
 version: 0.1.0
-publish_to: none
+repository: https://github.com/ArAd1Beyranvand/bhutan_plate
 resolution: workspace
 
 environment:
