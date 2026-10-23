@@ -170,7 +170,12 @@ abstract final class BhutanPlates {
 
   static PlateLabel _caption(_Row row, String text) => PlateLabel(
     text: text,
-    box: PlateBox(row.captionCx - 150, row.captionCy - row.captionBox / 2, 300, row.captionBox),
+    box: PlateBox(
+      row.captionCx - 150,
+      row.captionCy - row.captionBox / 2,
+      300,
+      row.captionBox,
+    ),
     glyphHeight: row.captionGlyph,
   );
 
@@ -191,7 +196,12 @@ abstract final class BhutanPlates {
   );
 
   /// `BT-1-A1234`: black on yellow in a black frame.
-  static final PlateSpec taxi = _civil('bt.taxi', _Layout.taxi, 'འབྲུག་གླ་', _civilParts);
+  static final PlateSpec taxi = _civil(
+    'bt.taxi',
+    _Layout.taxi,
+    'འབྲུག་གླ་',
+    _civilParts,
+  );
 
   /// `RBP-2300`: light on blue.
   static final PlateSpec police = _civil(
@@ -228,8 +238,16 @@ abstract final class BhutanPlates {
     _Part('number', BhutanAlphabets.digits, 4),
   ];
 
-  static PlateSpec _civil(String id, _Row row, String caption, List<_Part> parts) {
-    final int cells = parts.fold<int>(0, (int n, _Part p) => n + p.count + (p.dash ? 1 : 0));
+  static PlateSpec _civil(
+    String id,
+    _Row row,
+    String caption,
+    List<_Part> parts,
+  ) {
+    final int cells = parts.fold<int>(
+      0,
+      (int n, _Part p) => n + p.count + (p.dash ? 1 : 0),
+    );
     final double pitch = (row.right - row.left) / cells;
     final List<PlateSlot> slots = <PlateSlot>[];
     final List<PlateLabel> labels = <PlateLabel>[_caption(row, caption)];
@@ -237,7 +255,16 @@ abstract final class BhutanPlates {
     int cell = 0;
     for (final _Part p in parts) {
       groups.add(PlateTextGroup(<int>[slots.length], key: p.key));
-      slots.add(_field(p.alphabet, p.count, row.left + cell * pitch, pitch, row.top, row.box));
+      slots.add(
+        _field(
+          p.alphabet,
+          p.count,
+          row.left + cell * pitch,
+          pitch,
+          row.top,
+          row.box,
+        ),
+      );
       cell += p.count;
       if (p.dash) {
         labels.add(
@@ -260,7 +287,9 @@ abstract final class BhutanPlates {
       slots: slots,
       labels: labels,
       textGroups: groups,
-      resolveRegion: parts.any((_Part p) => p.key == 'area') ? BhutanRegions.captionOf : null,
+      resolveRegion: parts.any((_Part p) => p.key == 'area')
+          ? BhutanRegions.captionOf
+          : null,
     );
   }
 
@@ -276,7 +305,14 @@ abstract final class BhutanPlates {
       noPanel: true,
       slots: <PlateSlot>[
         _field(BhutanAlphabets.digits, 2, row.left, pitch, row.top, row.box),
-        _field(BhutanAlphabets.digits, 2, row.left + 4 * pitch, pitch, row.top, row.box),
+        _field(
+          BhutanAlphabets.digits,
+          2,
+          row.left + 4 * pitch,
+          pitch,
+          row.top,
+          row.box,
+        ),
       ],
       labels: <PlateLabel>[
         _caption(row, 'ཚབ་'),
